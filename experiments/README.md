@@ -1,5 +1,13 @@
+* Neural Network
+* transformers(embedding, fine-tuning)
+* ensemble(tuned, no-tuned)
+* seed average
+* feature engineering
+
 | file | CV | LB | description |
 | - | - | - | - |
 | exp001 | 66.11899904620047 | 64.5174611 | baseline_lgb<br>yearとpriceのMultilabelStratifiedKFold |
 | exp002 | 64.72120662038989 | 63.4342250 | baseline_cat<br>yearとpriceのMultilabelStratifiedKFold |
 | exp003 | 45.84279120500015 | 45.1154626 | baseline_ensemble(cat+lgb)<br>yearとpriceのMultilabelStratifiedKFold |
+| exp004 | 44.6154644289379 | 44.0886434 | baseline_lgbから変更<br>**price_mapでのStratifiedKFold**<br>odometerの補完や色々なencodingを追加<br>with optuna |
+| 暫定目標 | 40 | 40 |  |
