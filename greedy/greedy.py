@@ -7,7 +7,7 @@ warnings.simplefilter("ignore")
 
 
 
-def greedy_forward_selection(CFG, X_train: pd.DataFrame, X_valid: pd.DataFrame):
+def greedy_forward_selection(CFG, all_data: pd.DataFrame):
     """
     greedy forward selection
     
@@ -16,8 +16,7 @@ def greedy_forward_selection(CFG, X_train: pd.DataFrame, X_valid: pd.DataFrame):
 
     Args:
         CFG : config
-        X_train (pd.DataFrame): 学習用データ
-        X_valid (pd.DataFrame): 評価用データ
+        all_data (pd.DataFrame): 全データ
     """
     best_score = np.inf
     selected = set([])
@@ -34,7 +33,7 @@ def greedy_forward_selection(CFG, X_train: pd.DataFrame, X_valid: pd.DataFrame):
         for feature in CFG.learnable_features:
             if feature not in selected:
                 fs = list(selected) + [feature]
-                score = evaluate(CFG, fs, X_train, X_valid)
+                score = evaluate(CFG, fs, all_data)
                 scores.append((feature, score))
 
         b_feature, b_score = sorted(scores, key=lambda tpl: tpl[1])[0]
@@ -48,14 +47,14 @@ def greedy_forward_selection(CFG, X_train: pd.DataFrame, X_valid: pd.DataFrame):
     print('\033[32m'+f"best_score: {best_score}"+'\033[0m')
     
     # 選ばれた特徴量を保存
-    with open(CFG.save_dir+f'selected_features_{CFG.greedy_fold}fold_{CFG.greedy_seed}seed.pickle', mode='wb') as f:
+    with open(CFG.save_dir+f'selected_features_{CFG.greedy_seed}seed.pickle', mode='wb') as f:
         pickle.dump(selected, f)
     print("Saved selected features!")
 
 
 
 
-def simple_greedy_selection(CFG, X_train: pd.DataFrame, X_valid: pd.DataFrame):
+def simple_greedy_selection(CFG, all_data: pd.DataFrame):
     """
     simple greedy forward selection
     
@@ -64,9 +63,17 @@ def simple_greedy_selection(CFG, X_train: pd.DataFrame, X_valid: pd.DataFrame):
 
     Args:
         CFG : config        
-        X_train (pd.DataFrame): 学習用データ
-        X_valid (pd.DataFrame): 評価用データ
+        all_data (pd.DataFrame): 全データ
     """
+    for col in CFG.categorical_features:
+        CFG.candidate_features.append(col+"_count_encoding")
+    for col in CFG.categorical_features:
+        for agg_ in ["mean", "std", "max", "min", "median"]:
+            CFG.candidate_features.append(col+f"_{agg_}_encoding")
+    CFG.categorical_features_ = [feature + "_category" for feature in CFG.categorical_features]
+    CFG.candidate_features += CFG.categorical_features_
+            
+    
     # 特徴量の順番を入れ替える
     candidates = np.random.RandomState(CFG.greedy_seed).permutation(CFG.candidate_features)
     selected = set([])
@@ -75,14 +82,14 @@ def simple_greedy_selection(CFG, X_train: pd.DataFrame, X_valid: pd.DataFrame):
     print("base features: ", CFG.base_features)
     
     # baseline
-    best_score = evaluate(CFG, CFG.base_features, X_train, X_valid)
+    best_score = evaluate(CFG, CFG.base_features, all_data)
     print(f"[{0}/{len(candidates)}]Base Score: {best_score:.3f}")
 
 
     for i, feature in enumerate(candidates):
         fs = list(selected) + [feature] + CFG.base_features
         # 選んだ特徴量を用いて学習・評価を行う
-        score = evaluate(CFG, fs, X_train, X_valid)
+        score = evaluate(CFG, fs, all_data)
         if score < best_score:
             selected.add(feature)
             print(f"[{i+1}/{len(candidates)}]Score: {best_score:.3f} -> {score:.3f}"+f' &   selected: {feature}')
@@ -97,6 +104,6 @@ def simple_greedy_selection(CFG, X_train: pd.DataFrame, X_valid: pd.DataFrame):
     print('\033[32m'+f"best_score: {best_score}"+'\033[0m')
     
     # 選ばれた特徴量を保存
-    with open(CFG.save_dir+f'selected_features_fold{CFG.greedy_fold}_seed{CFG.greedy_seed}.pickle', mode='wb') as f:
+    with open(CFG.save_dir+f'selected_features_seed{CFG.greedy_seed}.pickle', mode='wb') as f:
         pickle.dump(selected, f)
     print("Saved selected features!")

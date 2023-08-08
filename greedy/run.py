@@ -13,8 +13,6 @@ def parse_args():
     parser.add_argument("--greedy_type", type=str, default="simple", required=False, choices=["simple", "full"])
     parser.add_argument("--greedy_seed", type=int, default=42, required=False,
                         help="seed for simple greedy")
-    parser.add_argument("--greedy_fold", type=int, default=0, required=False,
-                        help="evaluate fold for simple greedy")
     parser.add_argument("--n_splits", type=int, default=5, required=False)
     parser.add_argument("--data_dir", type=str, default="G:/マイドライブ/signate_StudentCup2023/data/", required=False)
     parser.add_argument("--target_bins", type=int, default=20, required=False)
@@ -42,11 +40,10 @@ def main(args):
     all_data = load_data(args)
     all_data = preprocessing(all_data)
     train = kfold(args, all_data)    
-    X_train, X_valid = preprocessing_per_fold(args, train, test=None, fold=args.greedy_fold, predict=False)
     if args.greedy_type == "simple":
-        simple_greedy_selection(args, X_train, X_valid)
+        simple_greedy_selection(args, train)
     elif args.greedy_type == "full":
-        greedy_forward_selection(args, X_train, X_valid)
+        greedy_forward_selection(args, train)
     return 
     
     

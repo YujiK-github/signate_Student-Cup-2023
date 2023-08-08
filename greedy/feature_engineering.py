@@ -141,7 +141,6 @@ def preprocessing_per_fold(CFG, train:pd.DataFrame, test:pd.DataFrame = None, fo
         X_valid[col+"_count_encoding"] = X_valid[col].map(count_map)
         if predict:
             test_df[col+"_count_encoding"] = test_df[col].map(count_map)
-        CFG.candidate_features.append(col+"_count_encoding")
         
         
     # 集約特徴量を用いたエンコーディング
@@ -152,7 +151,6 @@ def preprocessing_per_fold(CFG, train:pd.DataFrame, test:pd.DataFrame = None, fo
             X_valid[col+f"_{agg_}_encoding"] = X_valid[col].map(fillna_map)
             if predict:
                 test_df[col+f"_{agg_}_encoding"] = test_df[col].map(fillna_map)
-            CFG.candidate_features.append(col+f"_{agg_}_encoding")
             
             
     # OrdinalEncoder: これはfoldごとではなくともよい
@@ -166,7 +164,6 @@ def preprocessing_per_fold(CFG, train:pd.DataFrame, test:pd.DataFrame = None, fo
     X_valid[CFG.categorical_features_] = oe.transform(X_valid[CFG.categorical_features].values)
     if predict:
         test_df[CFG.categorical_features_] = oe.transform(test_df[CFG.categorical_features].values)
-    CFG.candidate_features += CFG.categorical_features_
     
     if predict:
         return X_train, X_valid, test_df
