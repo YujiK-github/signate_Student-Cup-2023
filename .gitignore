@@ -1,6 +1,8 @@
 # data
 data/
-exp/
 
 # memo
 memo/
+
+# cashe
+__pycache__
