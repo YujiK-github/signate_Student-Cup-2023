@@ -1,5 +1,4 @@
 import argparse
-import multiprocessing
 import warnings
 warnings.simplefilter("ignore")
 from utils import seed_everything, load_data, kfold
@@ -14,8 +13,8 @@ def parse_args():
     parser.add_argument("--greedy_seed", type=int, default=42, required=False,
                         help="seed for simple greedy")
     parser.add_argument("--n_splits", type=int, default=5, required=False)
+    parser.add_argument("--filename", type=str, default="exp009", required=False)
     parser.add_argument("--data_dir", type=str, default="G:/マイドライブ/signate_StudentCup2023/data/", required=False)
-    parser.add_argument("--target_bins", type=int, default=20, required=False)
     parser.add_argument("--year_bins", type=int, default=20, required=False)
     parser.add_argument("--num_boost_round", type=int, default=10000, required=False)
     parser.add_argument("--stopping_rounds", type=int, default=1500, required=False)
@@ -23,7 +22,7 @@ def parse_args():
     parser.add_argument("--base_features", type=str, nargs="*", default=['year', "odometer"], required=False)
     parser.add_argument("--debug", action="store_true", required=False)
     args = parser.parse_args()
-    args.num_cores = multiprocessing.cpu_count()
+    args.num_cores = 4 # localだと8 CPU?, Kaggleだと4CPUなのでkaggleに合わせる
     args.categorical_features = [
         "fuel", "title_status", "type", "state", "region", "manufacturer", "condition", "cylinders", "transmission", "drive", "size", "paint_color"
         ]
@@ -31,7 +30,8 @@ def parse_args():
         args.num_boost_round = 5
         args.stopping_rounds = 1
         args.categorical_features = ["fuel"]
-    args.candidate_features = []
+    args.base_features += [col+"_category" for col in args.categorical_features]
+    args.candidate_features = ["odometer_per_year"]
     return args
     
     

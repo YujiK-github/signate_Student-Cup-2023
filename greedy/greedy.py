@@ -38,7 +38,7 @@ def greedy_forward_selection(CFG, all_data: pd.DataFrame):
 
         b_feature, b_score = sorted(scores, key=lambda tpl: tpl[1])[0]
         if b_score < best_score:
-            print(f"Score: {best_score:.3f} -> {b_score:.3f}"+f' &   selected: {b_feature}')
+            print(f"Score: {best_score:.5f} -> {b_score:.5f}"+f' &   selected: {b_feature}')
             selected.add(b_feature)
             best_score = b_score
         else:
@@ -70,8 +70,6 @@ def simple_greedy_selection(CFG, all_data: pd.DataFrame):
     for col in CFG.categorical_features:
         for agg_ in ["mean", "std", "max", "min", "median"]:
             CFG.candidate_features.append(col+f"_{agg_}_encoding")
-    CFG.categorical_features_ = [feature + "_category" for feature in CFG.categorical_features]
-    CFG.candidate_features += CFG.categorical_features_
             
     
     # 特徴量の順番を入れ替える
@@ -92,10 +90,10 @@ def simple_greedy_selection(CFG, all_data: pd.DataFrame):
         score = evaluate(CFG, fs, all_data)
         if score < best_score:
             selected.add(feature)
-            print(f"[{i+1}/{len(candidates)}]Score: {best_score:.3f} -> {score:.3f}"+f' &   selected: {feature}')
+            print(f"[{i+1}/{len(candidates)}]Score: {best_score:.5f} -> {score:.5f}"+f' &   selected: {feature}')
             best_score = score
         else:
-            print(f"[{i+1}/{len(candidates)}]Score: {best_score:.3f} -> {score:.3f}"+f' & unselected: {feature}') 
+            print(f"[{i+1}/{len(candidates)}]Score: {best_score:.5f} -> {score:.5f}"+f' & unselected: {feature}') 
 
     
     selected = list(selected) + CFG.base_features
@@ -104,6 +102,6 @@ def simple_greedy_selection(CFG, all_data: pd.DataFrame):
     print('\033[32m'+f"best_score: {best_score}"+'\033[0m')
     
     # 選ばれた特徴量を保存
-    with open(CFG.save_dir+f'selected_features_seed{CFG.greedy_seed}.pickle', mode='wb') as f:
+    with open(CFG.save_dir+f'selected_features_for_{CFG.filename}_seed{CFG.greedy_seed}.pickle', mode='wb') as f:
         pickle.dump(selected, f)
-    print("Saved selected features!")
+    print(f"Saved to {CFG.save_dir}selected_features_for_{CFG.filename}_seed{CFG.greedy_seed}.pickle!")

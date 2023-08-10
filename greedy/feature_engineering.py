@@ -1,3 +1,4 @@
+import numpy as np
 import pandas as pd
 import unicodedata
 from sklearn.preprocessing import OrdinalEncoder
@@ -133,6 +134,15 @@ def preprocessing_per_fold(CFG, train:pd.DataFrame, test:pd.DataFrame = None, fo
     if predict:
         test_df = replace_odometer(test_df, fillna_map)
         
+    def add_odometer_per_year(df: pd.DataFrame):
+        df["elapsed_year"] = 2023 - df["year"]
+        df["odometer_per_year"] = df["odometer"] / df["elapsed_year"]
+        return df
+    X_train = add_odometer_per_year(X_train)
+    X_valid = add_odometer_per_year(X_valid) 
+    if predict:
+        test_df = add_odometer_per_year(test_df)
+        
         
     # カウントエンコーディング
     for col in CFG.categorical_features:
@@ -156,8 +166,8 @@ def preprocessing_per_fold(CFG, train:pd.DataFrame, test:pd.DataFrame = None, fo
     # OrdinalEncoder: これはfoldごとではなくともよい
     oe = OrdinalEncoder(categories="auto",
                         handle_unknown="use_encoded_value",
-                        unknown_value=-2, # 未知のデータは-2に変換する
-                        encoded_missing_value=-1, # 欠損値は-1に変換する
+                        unknown_value=999,
+                        encoded_missing_value=np.nan, # QUESTION: 欠損値は-1に変換する -> NaNに??
                         )
     CFG.categorical_features_ = [feature + "_category" for feature in CFG.categorical_features]
     X_train[CFG.categorical_features_] = oe.fit_transform(X_train[CFG.categorical_features].values)
