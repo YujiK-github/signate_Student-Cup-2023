@@ -7,6 +7,8 @@ TODO: catboost
 TODO: xgboost  
 TODO: fold増やす  
 TODO: 値段帯で分ける？？
+TODO: 重複あるかも？？
+
 
 | file | CV | LB | description |
 | - | - | - | - |
