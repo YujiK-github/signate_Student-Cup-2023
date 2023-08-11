@@ -134,14 +134,6 @@ def preprocessing_per_fold(CFG, train:pd.DataFrame, test:pd.DataFrame = None, fo
     if predict:
         test_df = replace_odometer(test_df, fillna_map)
         
-    def add_odometer_per_year(df: pd.DataFrame):
-        df["elapsed_year"] = 2023 - df["year"]
-        df["odometer_per_year"] = df["odometer"] / df["elapsed_year"]
-        return df
-    X_train = add_odometer_per_year(X_train)
-    X_valid = add_odometer_per_year(X_valid) 
-    if predict:
-        test_df = add_odometer_per_year(test_df)
         
         
     # カウントエンコーディング

@@ -3,17 +3,17 @@ import warnings
 warnings.simplefilter("ignore")
 from utils import seed_everything, load_data, kfold
 from feature_engineering import preprocessing, preprocessing_per_fold
-from greedy import simple_greedy_selection, greedy_forward_selection
+from greedy import simple_greedy_selection, greedy_forward_selection, rule_base_greedy_selection
 
 
 def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument("--seed", type=int, default=42, required=False)
-    parser.add_argument("--greedy_type", type=str, default="simple", required=False, choices=["simple", "full"])
+    parser.add_argument("--greedy_type", type=str, default="rule_base", required=False, choices=["simple", "full", "rule_base"])
     parser.add_argument("--greedy_seed", type=int, default=42, required=False,
                         help="seed for simple greedy")
     parser.add_argument("--n_splits", type=int, default=5, required=False)
-    parser.add_argument("--filename", type=str, default="exp009", required=False)
+    parser.add_argument("--filename", type=str, default="exp010", required=False)
     parser.add_argument("--data_dir", type=str, default="G:/マイドライブ/signate_StudentCup2023/data/", required=False)
     parser.add_argument("--year_bins", type=int, default=20, required=False)
     parser.add_argument("--num_boost_round", type=int, default=10000, required=False)
@@ -29,9 +29,9 @@ def parse_args():
     if args.debug:
         args.num_boost_round = 5
         args.stopping_rounds = 1
-        args.categorical_features = ["fuel"]
+        args.categorical_features = ["manufacturer"]
     args.base_features += [col+"_category" for col in args.categorical_features]
-    args.candidate_features = ["odometer_per_year"]
+    args.candidate_features = []
     return args
     
     
@@ -44,6 +44,8 @@ def main(args):
         simple_greedy_selection(args, train)
     elif args.greedy_type == "full":
         greedy_forward_selection(args, train)
+    elif args.greedy_type == "rule_base":
+        rule_base_greedy_selection(args, train)
     return 
     
     
