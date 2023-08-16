@@ -39,4 +39,5 @@ TODO: StackingするときにMSEベースの特徴量くわえてみる？
 | exp010_4 | 44.43327055384885 |  | 新しくCross Validationのやり方を設定したsimpleなlgbでrule based greedy selectionを使って特徴量選択した5個のモデル(5)_seed1 |
 | exp010 | 44.19084497334044 | 43.6761545 | 新しくCross Validationのやり方を設定したsimpleなlgbでrule based greedy selectionを使って特徴量選択した5個のモデルのアンサンブル(evaluate CV)を試してみた |
 | exp011 | 44.15693790827101 | 43.6017463 | simple greedy selectionした後にoptunaでparameter tuningした(1) |
+| exp012 | 44.17021540173626 | 43.6111546 | simple greedy selectionした後にoptunaでparameter tuningした(2) |
 | 暫定目標 | 43.5? | 43.00 |  |
