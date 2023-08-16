@@ -70,7 +70,15 @@ def simple_greedy_selection(CFG, all_data: pd.DataFrame):
     for col in CFG.categorical_features:
         for agg_ in ["mean", "std", "max", "min", "median"]:
             CFG.candidate_features.append(col+f"_{agg_}_encoding")
-            
+            CFG.candidate_features.append(col+f"_{agg_}_odometer_encoding")
+            CFG.candidate_features.append(col+f"_{agg_}_elapsed_years_encoding")
+            if agg_ == "median" or agg_ == "mean":
+                CFG.candidate_features.append(col+f"_{agg_}_odometer_encoding_diff")
+                CFG.candidate_features.append(col+f"_{agg_}_elapsed_years_encoding_diff")
+    for col in ["log_odometer", "sqrt_odometer", "elapsed_years*odometer", "elapsed_years*log_odometer", "elapsed_years*sqrt_odometer", 
+                "log_elapsed_years*odometer", "log_elapsed_years*log_odometer", "log_elapsed_years*sqrt_odometer", "sqrt_elapsed_years*odometer", 
+                "sqrt_elapsed_years*log_odometer", "sqrt_elapsed_years*sqrt_odometer"]:
+        CFG.candidate_features.append(col)
     
     # 特徴量の順番を入れ替える
     candidates = np.random.RandomState(CFG.greedy_seed).permutation(CFG.candidate_features)

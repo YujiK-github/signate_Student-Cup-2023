@@ -57,17 +57,9 @@ def kfold(CFG, all_data: pd.DataFrame):
     """
     train = all_data[all_data["flag"] == "train"].reset_index(drop=True)
     test = all_data[all_data["flag"] == "test"].reset_index(drop=True)
-
-    train.sort_values(by="id", ignore_index=True, inplace=True)
-
-    train["year_map"], bins = pd.cut(train["year"], bins=20, labels=False, retbins=True)
-    test["year_map"] = pd.cut(test["year"], bins=bins, labels=False)
-
-
     # priceを小さい順に各foldに振り分ける
     train.sort_values(by="price", ignore_index=True, inplace=True)
-    train["fold"] = [col for col in range(CFG.n_splits)] * (train.shape[0]//CFG.n_splits) \
-                    + [col for col in range(0, train.shape[0] - len([col for col in range(CFG.n_splits)] * (train.shape[0] //CFG.n_splits)))]
+    train["fold"] = [i for i in range(CFG.n_splits)] * (train.shape[0] // CFG.n_splits) + [i for i in range(train.shape[0] % CFG.n_splits)]
     train.sort_values(by="id", ignore_index=True, inplace=True)
     print(train["fold"].value_counts())
     print("The variance of the mean of the folds: ", train.groupby("fold")["price"].mean().std())

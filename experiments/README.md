@@ -16,7 +16,9 @@ exp008では
 
 TODO: 値段帯で分ける？？  
 TODO: 重複あるかも？？ -> 重複なかった  
-TODO: feature_selectoionのgreedy_seedの種類を増やす(5 -> ??)
+TODO: feature_selectionのgreedy_seedの種類を増やす(5 -> ??)
+TODO: yearやodometerの集約特徴量を加えてgreedy? -> あまり改善しなかった
+TODO: StackingするときにMSEベースの特徴量くわえてみる？ 
 
 
 | file | CV | LB | description |
@@ -36,4 +38,5 @@ TODO: feature_selectoionのgreedy_seedの種類を増やす(5 -> ??)
 | exp010_3 | 44.33737773847836 | 43.7822822 | 新しくCross Validationのやり方を設定したsimpleなlgbでrule based greedy selectionを使って特徴量選択した5個のモデル(4)_seed2 |
 | exp010_4 | 44.43327055384885 |  | 新しくCross Validationのやり方を設定したsimpleなlgbでrule based greedy selectionを使って特徴量選択した5個のモデル(5)_seed1 |
 | exp010 | 44.19084497334044 | 43.6761545 | 新しくCross Validationのやり方を設定したsimpleなlgbでrule based greedy selectionを使って特徴量選択した5個のモデルのアンサンブル(evaluate CV)を試してみた |
+| exp011 | 44.15693790827101 | 43.6017463 | simple greedy selectionした後にoptunaでparameter tuningした(1) |
 | 暫定目標 | 43.5? | 43.00 |  |

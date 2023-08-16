@@ -87,6 +87,11 @@ def preprocessing(all_data: pd.DataFrame):
     # fuel
     ## 欠損値 train: 1239, test: 1495
     
+    
+    all_data["elapsed_years"] = 2023 - all_data["year"]
+    all_data["log_elapsed_years"] = np.log(all_data["elapsed_years"])
+    all_data["sqrt_elapsed_years"] = np.sqrt(all_data["elapsed_years"])
+    
     return all_data
 
 
@@ -109,7 +114,7 @@ def preprocessing_per_fold(CFG, train:pd.DataFrame, test:pd.DataFrame = None, fo
     # odometerの補正
     ## odometerが100以下or400000以上を異常値と考えて補完する
     ## year_mapがodometerの分散が大きくなる特徴量だったのでこれを利用してodometerを補完する
-    fillna_map = X_train[(X_train["odometer"] > 100)&(X_train["odometer"] < 400000)].groupby(["year_map"])["odometer"].mean().reset_index()
+    fillna_map = X_train[(X_train["odometer"] > 100)&(X_train["odometer"] < 400000)].groupby(["region"])["odometer"].mean().reset_index()
     
     def replace_odometer(df: pd.DataFrame, fillna_map: pd.DataFrame)-> pd.DataFrame:
         """odometerの異常値をfillna_mapを利用して補完する
@@ -124,7 +129,7 @@ def preprocessing_per_fold(CFG, train:pd.DataFrame, test:pd.DataFrame = None, fo
         df_1 = df[(df["odometer"] < 100)|(df["odometer"] > 400000)].reset_index(drop=True)
         df_2 = df[(df["odometer"] >= 100)&(df["odometer"] <= 400000)].reset_index(drop=True)
         df_1.drop("odometer", inplace=True, axis=1)
-        df_1 = pd.merge(df_1, fillna_map, on="year_map", how="left")
+        df_1 = pd.merge(df_1, fillna_map, on="region", how="left")
         df = pd.concat([df_1, df_2])
         return df.sort_values("id", ignore_index=True)
     
@@ -133,7 +138,40 @@ def preprocessing_per_fold(CFG, train:pd.DataFrame, test:pd.DataFrame = None, fo
     X_valid = replace_odometer(X_valid, fillna_map)
     if predict:
         test_df = replace_odometer(test_df, fillna_map)
+        test_df["odometer"].fillna(X_train["odometer"].mean(), inplace=True)
+    X_train["odometer"].fillna(X_train["odometer"].mean(), inplace=True)
+    X_valid["odometer"].fillna(X_train["odometer"].mean(), inplace=True)
         
+
+    # 交互作用
+    def apply_fe(df: pd.DataFrame) -> pd.DataFrame:
+        """foldごとの特徴量作成
+
+        Args:
+            df (pd.DataFrame)
+
+        Returns:
+            pd.DataFrame: 特徴量作成後のdf
+        """
+        df["log_odometer"] = np.log(df["odometer"])
+        df["sqrt_odometer"] = np.sqrt(df["odometer"])
+        
+        df["elapsed_years*odometer"] = df["elapsed_years"] * df["odometer"]
+        df["elapsed_years*log_odometer"] = df["elapsed_years"] * df["log_odometer"]
+        df["elapsed_years*sqrt_odometer"] = df["elapsed_years"] * df["sqrt_odometer"]
+        
+        df["log_elapsed_years*odometer"] = df["log_elapsed_years"] * df["odometer"]
+        df["log_elapsed_years*log_odometer"] = df["log_elapsed_years"] * df["log_odometer"]
+        df["log_elapsed_years*sqrt_odometer"] = df["log_elapsed_years"] * df["sqrt_odometer"]
+        
+        df["sqrt_elapsed_years*odometer"] = df["sqrt_elapsed_years"] * df["odometer"]
+        df["sqrt_elapsed_years*log_odometer"] = df["sqrt_elapsed_years"] * df["log_odometer"]
+        df["sqrt_elapsed_years*sqrt_odometer"] = df["sqrt_elapsed_years"] * df["sqrt_odometer"]
+        return df
+    X_train = apply_fe(X_train)
+    X_valid = apply_fe(X_valid)
+    if predict:
+        test_df = apply_fe(test_df)
         
         
     # カウントエンコーディング
@@ -153,6 +191,37 @@ def preprocessing_per_fold(CFG, train:pd.DataFrame, test:pd.DataFrame = None, fo
             X_valid[col+f"_{agg_}_encoding"] = X_valid[col].map(fillna_map)
             if predict:
                 test_df[col+f"_{agg_}_encoding"] = test_df[col].map(fillna_map)
+                
+    # 集約特徴量を用いたエンコーディング
+    for col in CFG.categorical_features:
+        for agg_ in ["mean", "std", "max", "min", "median"]:
+            fillna_map = X_train.groupby(col)["odometer"].agg(agg_)
+            X_train[col+f"_{agg_}_odometer_encoding"] = X_train[col].map(fillna_map)
+            X_valid[col+f"_{agg_}_odometer_encoding"] = X_valid[col].map(fillna_map)
+            if predict:
+                test_df[col+f"_{agg_}_odometer_encoding"] = test_df[col].map(fillna_map)
+            #CFG.candidate_features.append(col+f"_{agg_}_encoding")
+            if agg_ == "median" or agg_ == "mean":
+                X_train[col+f"_{agg_}_odometer_encoding_diff"] = X_train[col+f"_{agg_}_odometer_encoding"] - X_train["odometer"]
+                X_valid[col+f"_{agg_}_odometer_encoding_diff"] = X_valid[col+f"_{agg_}_odometer_encoding"] - X_valid["odometer"]
+                if predict:
+                    test_df[col+f"_{agg_}_odometer_encoding_diff"] = test_df[col+f"_{agg_}_odometer_encoding"] - test_df["odometer"]
+                    
+                    
+    # 集約特徴量を用いたエンコーディング
+    for col in CFG.categorical_features:
+        for agg_ in ["mean", "std", "max", "min", "median"]:
+            fillna_map = X_train.groupby(col)["elapsed_years"].agg(agg_)
+            X_train[col+f"_{agg_}_elapsed_years_encoding"] = X_train[col].map(fillna_map)
+            X_valid[col+f"_{agg_}_elapsed_years_encoding"] = X_valid[col].map(fillna_map)
+            if predict:
+                test_df[col+f"_{agg_}_elapsed_years_encoding"] = test_df[col].map(fillna_map)
+            #CFG.candidate_features.append(col+f"_{agg_}_encoding")
+            if agg_ == "median" or agg_ == "mean":
+                X_train[col+f"_{agg_}_elapsed_years_encoding_diff"] = X_train[col+f"_{agg_}_elapsed_years_encoding"] - X_train["elapsed_years"]
+                X_valid[col+f"_{agg_}_elapsed_years_encoding_diff"] = X_valid[col+f"_{agg_}_elapsed_years_encoding"] - X_valid["elapsed_years"]
+                if predict:
+                    test_df[col+f"_{agg_}_elapsed_years_encoding_diff"] = test_df[col+f"_{agg_}_elapsed_years_encoding"] - test_df["elapsed_years"]
             
             
     # OrdinalEncoder: これはfoldごとではなくともよい

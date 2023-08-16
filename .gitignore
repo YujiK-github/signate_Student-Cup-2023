@@ -4,3 +4,6 @@ data/
 
 # cashe
 __pycache__
+
+# catboost
+catboost_info/
