@@ -55,26 +55,6 @@ TODO: StackingするときにMSEベースの特徴量くわえてみる？
 | exp022 | 44.02074386662909 | - | **greedy->optuna, n_splits=8, ver8** | 
 | exp023 | 44.111543299653434 | - | **greedy->optuna, n_splits=8, ver9** | 
 | exp024 | 43.885207515251004  | 43.4107321  | ensemble (exp14~exp023) |
-| exp025 |  | - | **greedy**->optuna, n_splits=8, ver10 | 
-| exp026 |  | - | **greedy**->optuna, n_splits=8, ver11 | 
-| exp027 |  | - | **greedy**->optuna, n_splits=8, ver12 | 
-| exp028 |  | - | **greedy**->optuna, n_splits=8, ver13 | 
-| exp029 |  | - | **greedy**->optuna, n_splits=8, ver14 | 
-| exp030 |  | - | **greedy**->optuna, n_splits=8, ver15 | 
-| exp031 |  | - | **greedy**->optuna, n_splits=8, ver16 | 
-| exp032 |  | - | **greedy**->optuna, n_splits=8, ver17 | 
-| exp033 |  | - | **greedy**->optuna, n_splits=8, ver18 | 
-| exp034 |  | - | greedy->optuna, n_splits=8, ver19 | 
-| exp035 |  | | ensemble (exp25~exp034) |
-| exp036 |  | - | greedy->optuna, n_splits=8, ver20 | 
-| exp037 |  | - | greedy->optuna, n_splits=8, ver21 | 
-| exp038 |  | - | greedy->optuna, n_splits=8, ver22 | 
-| exp039 |  | - | greedy->optuna, n_splits=8, ver23 | 
-| exp040 |  | - | greedy->optuna, n_splits=8, ver24 | 
-| exp041 |  | - | greedy->optuna, n_splits=8, ver25 | 
-| exp042 |  | - | greedy->optuna, n_splits=8, ver26 | 
-| exp043 |  | - | greedy->optuna, n_splits=8, ver27 | 
-| exp044 |  | - | greedy->optuna, n_splits=8, ver28 | 
-| exp045 |  | - | greedy->optuna, n_splits=8, ver29 | 
-| exp046 |  | | ensemble (~exp045) |
+| exp025 | 43.87820413829381  | 43.4288652  | ensemble (exp14~exp023+kun4qi:exp038~exp040) |
+
 | 暫定目標 | 43.5? | 43.00 |  |
