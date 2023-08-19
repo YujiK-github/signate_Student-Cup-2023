@@ -56,9 +56,9 @@ TODO: StackingするときにMSEベースの特徴量くわえてみる？
 | exp023 | 44.111543299653434 | - | greedy->optuna, n_splits=8, ver9 | 
 | exp024 | 43.885207515251004  | **43.4107321**  | ensemble (exp14~exp023) |
 | exp025 | **43.87820413829381**  | 43.4288652  | ensemble (exp14~exp023+kun4qi:exp038~exp040) |
-| exp026 | 43.85695527186413 | - | greedy->optuna, n_splits=8, ver10 | 
+| exp026 | 43.85695527186413 | 43.4045397 | greedy->optuna, n_splits=8, ver10 | 
 | exp027 | 43.94810422364445 | - | greedy->optuna, n_splits=8, ver11 | 
-| exp028 | 43.805041424202756 | - | greedy->optuna, n_splits=8, ver12 | 
+| exp028 | 43.805041424202756 | 43.5306013 | greedy->optuna, n_splits=8, ver12 | 
 | exp029 | 43.98296206957362 | - | greedy->optuna, n_splits=8, ver13 | 
 | exp030 | 43.87890169196959 | - | greedy->optuna, n_splits=8, ver14 | 
 | exp031 | 43.94966528280684 | - | greedy->optuna, n_splits=8, ver15 | 
