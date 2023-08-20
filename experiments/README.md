@@ -79,5 +79,6 @@ TODO: StackingするときにMSEベースの特徴量くわえてみる？
 | exp046 | 44.70696228280802 | - | greedy->optuna, n_splits=8, ver27 |
 | exp047 | 43.88715221105957 | - | greedy->optuna, n_splits=8, ver28 |
 | exp048 | 43.82720801614026 | - | greedy->optuna, n_splits=8, ver29 |
-| exp049 | 43.69660836605411 |  | ensemble(exp039~048)(seed=42) |
+| exp049 | 43.69660836605411 | 43.2657786 | ensemble(exp039~048)(seed=42) |
+| exp050 | - | - | fileを集約 |
 | 暫定目標 | 43.5? | 43.00 |  |
