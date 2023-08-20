@@ -82,5 +82,5 @@ TODO: StackingするときにMSEベースの特徴量くわえてみる？
 | exp049 | 43.69660836605411 | 43.2657786 | ensemble(exp039~048)(seed=42) |
 | exp050 | - | - | fileを集約 |
 | exp051 | 43.56925636218776 | 43.2500502 | exp50に対してHill Climbingを適用 |
-| exp052 | - | - | exp50に対してSimple Greedy Forward Selectionを適用 |
+| exp052 | 43.572764461334195 | 43.2432630 | exp50に対してSimple Greedy Forward Selectionを適用 |
 | 暫定目標 | 43.5? | 43.00 |  |
