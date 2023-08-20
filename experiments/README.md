@@ -84,4 +84,5 @@ TODO: StackingするときにMSEベースの特徴量くわえてみる？
 | exp051 | 43.56925636218776 | 43.2500502 | exp50に対してHill Climbingを適用 |
 | exp052 | 43.572764461334195 | 43.2432630 | exp50に対してSimple Greedy Forward Selectionを適用(1) |
 | exp053 | 43.581332152377506 | 43.2406218 | exp50に対してSimple Greedy Forward Selectionを適用(2) |
+| exp054 | 43.58019939649411 | 43.2620733 | exp50に対してSimple Greedy Forward Selectionを適用(3) |
 | 暫定目標 | 43.5? | 43.00 |  |
