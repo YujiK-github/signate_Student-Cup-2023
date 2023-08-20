@@ -81,4 +81,6 @@ TODO: StackingするときにMSEベースの特徴量くわえてみる？
 | exp048 | 43.82720801614026 | - | greedy->optuna, n_splits=8, ver29 |
 | exp049 | 43.69660836605411 | 43.2657786 | ensemble(exp039~048)(seed=42) |
 | exp050 | - | - | fileを集約 |
+| exp051 | 43.56925636218776 | 43.2500502 | exp50に対してHill Climbingを適用 |
+| exp052 | - | - | exp50に対してSimple Greedy Forward Selectionを適用 |
 | 暫定目標 | 43.5? | 43.00 |  |
