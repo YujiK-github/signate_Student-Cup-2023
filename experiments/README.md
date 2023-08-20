@@ -1,7 +1,7 @@
 TODO: Neural Network  
 TODO: transformers(fine-tuning) model  
 TODO: transformers baseのembeddingを利用したmodel  
-TODO: ensemble(Weighted Average: optuna?, Stacking)  
+TODO: ensemble(Weighted Average: optuna?, Stacking, [Hill Climbing](https://www.kaggle.com/competitions/feedback-prize-english-language-learning/discussion/369609), [Nelder-Mead](https://www.kaggle.com/competitions/feedback-prize-english-language-learning/discussion/369538))  
 TODO: seed average  
 TODO: catboost  
 TODO: xgboost  
@@ -44,7 +44,7 @@ TODO: StackingするときにMSEベースの特徴量くわえてみる？
 | exp011 | 44.15693790827101 | 43.6017463 | simple greedy selectionした後にoptunaでparameter tuningした(1) |
 | exp012 | 44.17021540173626 | 43.6111546 | simple greedy selectionした後にoptunaでparameter tuningした(2) |
 | exp013 | 44.00756302577998 | 43.5427417 | exp011とexp012のアンサンブル |
-| exp014 | 43.966795960812284 | - | greedy->optuna, n_splits=8, ver0 | 
+| exp014 | 43.966795960812284 | - | greedy->optuna, n_splits=8, ver0 **(n_splits=5->8)** | 
 | exp015 | 44.11063297972305 | - | greedy->optuna, n_splits=8, ver1 | 
 | exp016 | 44.06125663376067 | - | greedy->optuna, n_splits=8, ver2 | 
 | exp017 | 44.12841111907897 | - | greedy->optuna, n_splits=8, ver3 | 
@@ -54,8 +54,8 @@ TODO: StackingするときにMSEベースの特徴量くわえてみる？
 | exp021 | 43.979683002688965 | - | greedy->optuna, n_splits=8, ver7 | 
 | exp022 | 44.02074386662909 | - | greedy->optuna, n_splits=8, ver8 | 
 | exp023 | 44.111543299653434 | - | greedy->optuna, n_splits=8, ver9 | 
-| exp024 | 43.885207515251004  | **43.4107321**  | ensemble (exp14~exp023) |
-| exp025 | **43.87820413829381**  | 43.4288652  | ensemble (exp14~exp023+kun4qi:exp038~exp040) |
+| exp024 | 43.885207515251004  | 43.4107321  | ensemble (exp14~exp023) |
+| exp025 | 43.87820413829381  | 43.4288652  | ensemble (exp14~exp023+kun4qi:exp038~exp040) |
 | exp026 | 43.85695527186413 | 43.4045397 | greedy->optuna, n_splits=8, ver10 | 
 | exp027 | 43.94810422364445 | - | greedy->optuna, n_splits=8, ver11 | 
 | exp028 | 43.805041424202756 | 43.5306013 | greedy->optuna, n_splits=8, ver12 | 
@@ -66,7 +66,18 @@ TODO: StackingするときにMSEベースの特徴量くわえてみる？
 | exp033 | 43.90702260712451 | - | greedy->optuna, n_splits=8, ver17 | 
 | exp034 | 44.00234699503871 | - | greedy->optuna, n_splits=8, ver18 |
 | exp035 | 44.00072184877421 | - | greedy->optuna, n_splits=8, ver19 |
-| exp036 | 43.707553358225496 | 43.3956187 | ensemble(exp026~035)(seed=42) |
+| exp036 | **43.707553358225496** | 43.3956187 | ensemble(exp026~035)(seed=42) |
 | exp037 | 43.71498987687226 | 43.4082446 | ensemble(exp026~035)(seed=43) |
-| exp038 | 43.723440087378485 | 43.3202885 | ensemble(exp026~035)(seed=44) |
+| exp038 | 43.723440087378485 | **43.3202885** | ensemble(exp026~035)(seed=44) |
+| exp039 | 44.052603595706614 | - | greedy->optuna, n_splits=8, ver20 |
+| exp040 | 43.97334761799733 | - | greedy->optuna, n_splits=8, ver21 |
+| exp041 | 43.92495216461714 | - | greedy->optuna, n_splits=8, ver22 |
+| exp042 | 43.96098462821153 | - | greedy->optuna, n_splits=8, ver23 |
+| exp043 | 43.880146795910825 | - | greedy->optuna, n_splits=8, ver24 |
+| exp044 | 43.9921719388979 | - | greedy->optuna, n_splits=8, ver25 |
+| exp045 | 45.04930871968063 | - | greedy->optuna, n_splits=8, ver26 |
+| exp046 | 44.70696228280802 | - | greedy->optuna, n_splits=8, ver27 |
+| exp047 | 43.88715221105957 | - | greedy->optuna, n_splits=8, ver28 |
+| exp048 | 43.82720801614026 | - | greedy->optuna, n_splits=8, ver29 |
+| exp049 | 43.69660836605411 |  | ensemble(exp039~048)(seed=42) |
 | 暫定目標 | 43.5? | 43.00 |  |
