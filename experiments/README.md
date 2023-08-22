@@ -96,4 +96,10 @@ TODO: StackingするときにMSEベースの特徴量くわえてみる？
 | exp063 | 44.21383091797129 | - | greedy->optuna, n_splits=8, ver38 |
 | exp064 | 44.09007864149579 | - | greedy->optuna, n_splits=8, ver39 |
 | exp065 | - | - | fileを集約 |
+| exp066 | 43.56453307604806 | | exp65に対してHill Climbingを適用 |
+| exp067 | 43.58216667876671 | | exp65に対してSimple Greedy Forward Selectionを適用(1) |
+| exp068 | 43.583016983994256 | | exp65に対してSimple Greedy Forward Selectionを適用(2) |
+| exp069 | 43.58368909587582 | | exp65に対してSimple Greedy Forward Selectionを適用(3) |
+| exp070 | 43.5824156325436 | | exp65に対してSimple Greedy Forward Selectionを適用(4) |
+| exp071 | 43.582951599388245 | | exp65に対してSimple Greedy Forward Selectionを適用(5) |
 | 暫定目標 | 43.5? | 43.00 |  |
