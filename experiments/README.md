@@ -85,4 +85,15 @@ TODO: StackingするときにMSEベースの特徴量くわえてみる？
 | exp052 | 43.572764461334195 | 43.2432630 | exp50に対してSimple Greedy Forward Selectionを適用(1) |
 | exp053 | 43.581332152377506 | 43.2406218 | exp50に対してSimple Greedy Forward Selectionを適用(2) |
 | exp054 | 43.58019939649411 | 43.2620733 | exp50に対してSimple Greedy Forward Selectionを適用(3) |
+| exp055 | 43.97979077815365 | - | greedy->optuna, n_splits=8, ver30 |
+| exp056 | 44.02700513287697 | - | greedy->optuna, n_splits=8, ver31 |
+| exp057 | 44.01000090608199  | - | greedy->optuna, n_splits=8, ver32 |
+| exp058 | 43.88155550572779 | - | greedy->optuna, n_splits=8, ver33 |
+| exp059 | 44.017131070289715 | - | greedy->optuna, n_splits=8, ver34 |
+| exp060 | 44.21214679361081 | - | greedy->optuna, n_splits=8, ver35 |
+| exp061 | 43.92204486548245 | - | greedy->optuna, n_splits=8, ver36 |
+| exp062 | 44.00450581631167 | - | greedy->optuna, n_splits=8, ver37 |
+| exp063 | 44.21383091797129 | - | greedy->optuna, n_splits=8, ver38 |
+| exp064 | 44.09007864149579 | - | greedy->optuna, n_splits=8, ver39 |
+| exp065 | - | - | fileを集約 |
 | 暫定目標 | 43.5? | 43.00 |  |
