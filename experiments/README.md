@@ -102,4 +102,9 @@ TODO: StackingするときにMSEベースの特徴量くわえてみる？
 | exp069 | 43.58368909587582 | | exp65に対してSimple Greedy Forward Selectionを適用(3) |
 | exp070 | 43.5824156325436 | | exp65に対してSimple Greedy Forward Selectionを適用(4) |
 | exp071 | 43.582951599388245 | | exp65に対してSimple Greedy Forward Selectionを適用(5) |
+| exp072 | 43.500996476403245 |  | exp051~054+kun4qi(exp055, exp056)に対してOptunaを適用 |
+| exp073 | 43.49803242660311 |  | exp051~054+kun4qi(exp055, exp056)に対してHill Climbingを適用 |
+| exp074 | 43.49763793970716 |  | exp051~054+kun4qi(exp055, exp056)に対してSimple Greedy Forward Selectionを適用(1) |
+| exp075 | 43.49799517555315 |  | exp051~054+kun4qi(exp055, exp056)に対してSimple Greedy Forward Selectionを適用(2) |
+| exp076 | 43.49790678952483 |  | exp051~054+kun4qi(exp055, exp056)に対してSimple Greedy Forward Selectionを適用(3) |
 | 暫定目標 | 43.5? | 43.00 |  |
