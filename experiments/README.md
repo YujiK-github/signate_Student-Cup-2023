@@ -108,3 +108,58 @@ TODO: StackingするときにMSEベースの特徴量くわえてみる？
 | exp075 | 43.49799517555315 |  | exp051~054+kun4qi(exp055, exp056)に対してSimple Greedy Forward Selectionを適用(2) |
 | exp076 | 43.49790678952483 |  | exp051~054+kun4qi(exp055, exp056)に対してSimple Greedy Forward Selectionを適用(3) |
 | 暫定目標 | 43.5? | 43.00 |  |
+
+
+
+### exp050
+#### 1段階目  
+純粋な予測モデル(30+10個)
+
+#### 2段階目
+| method | CV | LB | filename |
+| - | - | - | - |
+| Nelder-Meld | 43.57204422204847 | 43.2521041 | kun4qi exp55 |
+| stacking_lgb | 43.60 |  | kun4qi exp56 |
+| Hill Climbing | 43.56925636218776 | 43.2500502 | Yuji.K exp051 |
+| Simple Greedy1 | 43.56925636218776 | 43.2432630 | Yuji.K exp052 |
+| Simple Greedy2 | 43.56925636218776 | 43.2406218 | Yuji.K exp053 |
+| Simple Greedy3 | 43.56925636218776 | 43.2620733 | Yuji.K exp054 |
+
+#### 3段階目
+| method | CV | LB | filename |
+| - | - | - | - |
+| Nelder-Meld | 43.496076310831896 | | kun4qi exp61 |
+| stacking_lgb | |  | |
+| Optuna | 43.500996476403245 |  | Yuji.K exp072 | 
+| Hill Climbing | 43.500996476403245 | 43.1851463 | Yuji.K exp073 |
+| Simple Greedy1 | 43.49803242660311 | 43.1838002 | Yuji.K exp074 |
+| Simple Greedy2 | 43.49799517555315 | 43.1832022 | Yuji.K exp075 |
+| Simple Greedy3 | 43.49790678952483 | 43.1836722 | Yuji.K exp076 |
+
+
+### exp065
+#### 1段階目  
+純粋な予測モデル(40+10個)
+
+#### 2段階目
+| method | CV | LB | filename |
+| - | - | - | - |
+| Nelder-Meld | 43.56340118610674 | | kun4qi exp60 |
+| stacking_lgb | |  | Yuji.K Optuna回し中 |
+| Hill Climbing | 43.56453307604806 | | Yuji.K exp066 |
+| Simple Greedy1 | 43.58216667876671 | | Yuji.K exp067 |
+| Simple Greedy2 | 43.583016983994256 | | Yuji.K exp068 |
+| Simple Greedy3 | 43.58368909587582 | | Yuji.K exp069 |
+| Simple Greedy4 | 43.5824156325436 | | Yuji.K exp070 |
+| Simple Greedy5 | 43.582951599388245 | | Yuji.K exp071 |
+
+#### 3段階目
+| method | CV | LB | filename |
+| - | - | - | - |
+| Nelder-Meld |  | | |
+| stacking_lgb | |  | |
+| Optuna | |  | | 
+| Hill Climbing | |  | |
+| Simple Greedy1 | |  | |
+| Simple Greedy2 | |  | |
+| Simple Greedy3 | |  | |
