@@ -108,6 +108,11 @@ TODO: StackingするときにMSEベースの特徴量くわえてみる？
 | exp075 | 43.49799517555315 |  | exp051~054+kun4qi(exp055, exp056)に対してSimple Greedy Forward Selectionを適用(2) |
 | exp076 | 43.49790678952483 |  | exp051~054+kun4qi(exp055, exp056)に対してSimple Greedy Forward Selectionを適用(3) |
 | exp077 | 43.61044144258124 |  | exp051~054+kun4qi(exp055, exp056)に対してstacking_lgb |
+| exp078 | 43.512634988062615 |  | exp060シリーズ2段階目に対してSimple Greedy Forward Selectionを適用(1) |
+| exp079 | 43.511237476304665 |  | exp060シリーズ2段階目に対してSimple Greedy Forward Selectionを適用(2) |
+| exp080 | 43.51222899019721 |  | exp060シリーズ2段階目に対してSimple Greedy Forward Selectionを適用(3) |
+| exp081 | 43.512610839373686 |  | exp060シリーズ2段階目に対してHill Climbing |
+| exp082 | 43.525503530105766 |  | exp060シリーズ2段階目に対してoptuna |
 | 暫定目標 | 43.5? | 43.00 |  |
 
 
@@ -129,7 +134,7 @@ TODO: StackingするときにMSEベースの特徴量くわえてみる？
 #### 3段階目
 | method | CV | LB | filename |
 | - | - | - | - |
-| Nelder-Meld | 43.496076310831896 | | kun4qi exp61 |
+| Nelder-Meld | 43.496076310831896 | 43.1864741 | kun4qi exp61 |
 | stacking_lgb | 43.54 |  | kun4qi exp62 |
 | Optuna | 43.500996476403245 |  | Yuji.K exp072 | 
 | Hill Climbing | 43.500996476403245 | 43.1851463 | Yuji.K exp073 |
@@ -157,7 +162,7 @@ TODO: StackingするときにMSEベースの特徴量くわえてみる？
 #### 3段階目
 | method | CV | LB | filename |
 | - | - | - | - |
-| Nelder-Meld |  | | |
+| Nelder-Meld | 43.5075 | | |
 | stacking_lgb | |  | |
 | Optuna | 43.525503530105766 |  | Yuji.exp082 | 
 | Hill Climbing | 43.512610839373686 |  | Yuji.K exp081 |
