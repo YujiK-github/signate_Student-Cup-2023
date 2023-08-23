@@ -148,9 +148,9 @@ TODO: StackingするときにMSEベースの特徴量くわえてみる？
 | - | - | - | - |
 | Optuna | 43.47844292303129 |  | exp083 |
 | Hill Climbing | 43.47778313918253 | |  exp084 |
-| Simple Greedy1 | 43.47776380559784 |  | exp085 |
+| Simple Greedy1 | 43.47776380559784 | 43.1874960	 | exp085 |
 | Simple Greedy2 | 43.477767793581286 |  | exp086 |
-| Simple Greedy3 | 43.477758376378624 |  | exp087 |
+| Simple Greedy3 | 43.477758376378624 | 43.1874610 | exp087 |
 
 
 ### exp065
