@@ -146,8 +146,11 @@ TODO: StackingするときにMSEベースの特徴量くわえてみる？
 #### 4段目
 | method | CV | LB | filename | 
 | - | - | - | - |
-| Optuna |  |  | exp083 |
-| Hill Climbing | 
+| Optuna | 43.47844292303129 |  | exp083 |
+| Hill Climbing | 43.47778313918253 | |  exp084 |
+| Simple Greedy1 | 43.47776380559784 |  | exp085 |
+| Simple Greedy2 | 43.477767793581286 |  | exp086 |
+| Simple Greedy3 | 43.477758376378624 |  | exp087 |
 
 
 ### exp065
