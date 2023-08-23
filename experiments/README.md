@@ -136,11 +136,18 @@ TODO: StackingするときにMSEベースの特徴量くわえてみる？
 | - | - | - | - |
 | Nelder-Meld | 43.496076310831896 | 43.1864741 | kun4qi exp61 |
 | stacking_lgb | 43.54 |  | kun4qi exp62 |
-| Optuna | 43.50069731110081 |  | Yuji.K exp072 | 
+| Optuna | 43.501541457142345 |  | Yuji.K exp072 | 
 | Hill Climbing | 43.500996476403245 | 43.1851463 | Yuji.K exp073 |
 | Simple Greedy1 | 43.49803242660311 | 43.1838002 | Yuji.K exp074 |
 | Simple Greedy2 | 43.49799517555315 | 43.1832022 | Yuji.K exp075 |
 | Simple Greedy3 | 43.49790678952483 | 43.1836722 | Yuji.K exp076 |
+
+
+#### 4段目
+| method | CV | LB | filename | 
+| - | - | - | - |
+| Optuna |  |  | exp083 |
+| Hill Climbing | 
 
 
 ### exp065
