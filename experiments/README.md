@@ -124,7 +124,7 @@ TODO: StackingするときにMSEベースの特徴量くわえてみる？
 #### 2段階目
 | method | CV | LB | filename |
 | - | - | - | - |
-| Nelder-Meld | 43.57204422204847 | 43.2521041 | kun4qi exp55 |
+| Nelder-Mead | 43.57204422204847 | 43.2521041 | kun4qi exp55 |
 | stacking_lgb | 43.60 |  | kun4qi exp56 |
 | Hill Climbing | 43.56925636218776 | 43.2500502 | Yuji.K exp051 |
 | Simple Greedy1 | 43.56925636218776 | 43.2432630 | Yuji.K exp052 |
@@ -134,7 +134,7 @@ TODO: StackingするときにMSEベースの特徴量くわえてみる？
 #### 3段階目
 | method | CV | LB | filename |
 | - | - | - | - |
-| Nelder-Meld | 43.496076310831896 | 43.1864741 | kun4qi exp61 |
+| Nelder-Mead | 43.496076310831896 | 43.1864741 | kun4qi exp61 |
 | stacking_lgb | 43.54 |  | kun4qi exp62 |
 | Optuna | 43.501541457142345 |  | Yuji.K exp072 | 
 | Hill Climbing | 43.500996476403245 | 43.1851463 | Yuji.K exp073 |
@@ -146,6 +146,7 @@ TODO: StackingするときにMSEベースの特徴量くわえてみる？
 #### 4段目
 | method | CV | LB | filename | 
 | - | - | - | - |
+| Nelder-Mead | 43.47638114611345 | | kun4qi exp065 | 
 | Optuna | 43.47844292303129 |  | exp083 |
 | Hill Climbing | 43.47778313918253 | |  exp084 |
 | Simple Greedy1 | 43.47776380559784 | 43.1874960	 | exp085 |
@@ -160,7 +161,7 @@ TODO: StackingするときにMSEベースの特徴量くわえてみる？
 #### 2段階目
 | method | CV | LB | filename |
 | - | - | - | - |
-| Nelder-Meld | 43.56340118610674 | | kun4qi exp60 |
+| Nelder-Mead | 43.56340118610674 | | kun4qi exp60 |
 | stacking_lgb | 43.61044144258124 |  | Yuji.K exp077 |
 | Hill Climbing | 43.56453307604806 | | Yuji.K exp066 |
 | Simple Greedy1 | 43.58216667876671 | | Yuji.K exp067 |
@@ -172,7 +173,7 @@ TODO: StackingするときにMSEベースの特徴量くわえてみる？
 #### 3段階目
 | method | CV | LB | filename |
 | - | - | - | - |
-| Nelder-Meld | 43.5075 | | |
+| Nelder-Mead | 43.5075 | | |
 | stacking_lgb | |  | |
 | Optuna | 43.525503530105766 |  | Yuji.exp082 | 
 | Hill Climbing | 43.512610839373686 |  | Yuji.K exp081 |
