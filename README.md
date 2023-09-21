@@ -5,3 +5,5 @@
 
 ### 8/9にチーム結成
 [@kun4qi](https://github.com/kun4qi), [@ikuoikuo](https://github.com/ikuoikuo), [ChatGPT](https://chat.openai.com/)
+
+### Public: 10位くらい？ Private: 5位 4位入賞
